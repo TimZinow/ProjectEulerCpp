@@ -698,3 +698,99 @@
 //}
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------
+//Problem 15: Lattice paths
+// How many different routes are there from top left to bottom low of a 20x20 grid?
+//----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// There are 40!/20! paths through a 20x20 lattice (Addition of possible paths at nodes). The numbers are to big for any variable type
+// Therefore vectors and methods specifically written for them have to be used.
+
+#include<iostream>
+#include<vector>
+using namespace std;
+
+void MultiplyVectorByScalar(vector<int>& v, int k) {
+	for (int i = 0; i < v.size(); ++i)
+		v[i] = v[i] * k;
+}
+
+//Function to calculate the product of all numbers from start to stop, in this case from 21 to 40
+vector<int> factorial(int start, int stop){
+	//Creating the result vector
+	vector<int> fac;
+	int i = start;
+	//using the value of start to fill the results vector (reversed, ones first)
+	while (i > 0)
+	{
+		fac.push_back(i % 10);
+		i /= 10;
+	}
+	int s = fac.size();
+	//Creating a loop to multiply the start value with all other values up to stop
+	for (int j = start + 1; j <= stop; j++) {
+		s = fac.size();
+		MultiplyVectorByScalar(fac, j);
+
+		/*cout << "vec of size " << fac.size() << " multiplied with " << j << endl;
+		for (int z = 0; z < fac.size(); z++) {
+			cout << fac[z] << " ";
+		}
+		cout << endl;*/
+
+		int c = 0; //to see if fac entry was > 9
+		//Another loop needed to divide by ten and so on
+		for (int k = 0; k < s; k++) {
+			int a = fac[k]; //To save original value
+			int b = 0; //To change fac position every time the original value is divided by 10
+			while (a > 9) {
+				c = 1;
+				if (b==0) {
+					fac[k] = a % 10;
+				}
+				else if (b > 0 && k + b < fac.size()) {
+					fac[k+b] += a % 10;
+				}
+				else {
+					fac.push_back(a % 10);
+				}
+				a /= 10;
+				b++;
+			}
+			if (k + b < fac.size() && c==1) {  // if fac entry was >9 and there is an entry to the right
+				//cout << "added " << a << endl;
+				fac[k + b] += a;
+			}
+			else {
+				if (c == 1) {  // if fac entry was >9 but there is no entry to the right
+					//cout << "pushed back " << a << endl;
+					fac.push_back(a);
+				}
+			}
+			c = 0;
+		}
+
+		//cout << "vec multiplied with " << j << " set right" << endl;
+		//for (int y = 0; y < fac.size(); y++) {
+		//	cout << fac[y] << " ";
+		//}
+		//cout << endl;
+	}
+
+
+	reverse(fac.begin(), fac.end());
+	return fac;
+}
+
+int main() {
+
+	vector<int> paths = factorial(21, 40);
+	for (int i = 0; i < paths.size();i++) {
+		cout << paths[i] << " ";
+	}
+	cout << endl;
+	return 0;
+}
+//----------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -1,2 +1,6 @@
 ﻿  main.cpp
-  ProjectEulerCpp.vcxproj -> C:\Users\Lenovo\source\repos\ProjectEulerCpp\Debug\ProjectEulerCpp.exe
+C:\Users\Tim\source\repos\ProjectEulerCpp\ProjectEulerCpp\main.cpp(716,20): warning C4018: "<": Konflikt zwischen "signed" und "unsigned"
+C:\Users\Tim\source\repos\ProjectEulerCpp\ProjectEulerCpp\main.cpp(753,29): warning C4018: "<": Konflikt zwischen "signed" und "unsigned"
+C:\Users\Tim\source\repos\ProjectEulerCpp\ProjectEulerCpp\main.cpp(762,14): warning C4018: "<": Konflikt zwischen "signed" und "unsigned"
+C:\Users\Tim\source\repos\ProjectEulerCpp\ProjectEulerCpp\main.cpp(790,20): warning C4018: "<": Konflikt zwischen "signed" und "unsigned"
+  ProjectEulerCpp.vcxproj -> C:\Users\Tim\source\repos\ProjectEulerCpp\Debug\ProjectEulerCpp.exe
